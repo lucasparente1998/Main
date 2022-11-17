@@ -2,10 +2,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.lang.model.util.ElementScanner6;
 
 public class Main {
     public static void main(String[] args) {
         File arq1 = new File("caminhoes.txt");
+        Scanner input = new Scanner(System.in);
         ArrayList<Caminhao> caminhoes = new ArrayList<Caminhao>();
         try {
             try(BufferedReader br  = new BufferedReader(new FileReader(arq1))){
@@ -18,14 +22,6 @@ public class Main {
             }
         } catch(Exception erro){
 
-        }
-        for (int i = 0; i < caminhoes.size(); i++){
-            System.out.println(caminhoes.get(i).getPlaca());
-            System.out.println(caminhoes.get(i).getKm_por_litro());
-            System.out.println(caminhoes.get(i).getCapacidade_carga());
-            System.out.println(caminhoes.get(i).getStatus());
-
-            
         }
         File arq2 = new File("motoristas.txt");
         ArrayList<Motorista> motoristas = new ArrayList<Motorista>();
@@ -41,6 +37,63 @@ public class Main {
         } catch(Exception erro){
 
         }
+
+        int opcao, cod_cliente, peso, distancia, tempo_entrega;
+        String nome, cpf, telefone, tipo, data_transporte;
+        
+        
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+      
+        do {
+            System.out.println("1 - Registrar Cliente.");
+            System.out.println("2 - Realizar pedido.");
+            opcao = input.nextInt();
+            input.nextLine();
+
+            switch (opcao){
+                case 1:
+                        System.out.println("Digite o nome:");
+                        nome = input.nextLine();
+                        System.out.println("Digite o CPF:");
+                        cpf = input.nextLine();
+                        System.out.println("Digite o telefone:");
+                        telefone = input.nextLine();
+                        Cliente aux = new Cliente(nome, cpf, telefone);
+                        clientes.add(aux);
+                        break;
+                case 2:
+                        if(clientes.isEmpty()){
+                            System.out.println("Não pode realizar um pedido sem ter um cliente.");
+                            break;
+                        } else {
+                            System.out.println("Digite o Código do Cliente.");
+                            cod_cliente = input.nextInt();
+                            input.nextLine();
+                            for (int i = 0; i < clientes.size(); i++){
+                                if(cod_cliente == clientes.get(i).getCod_cliente()){
+                                    System.out.println("Digite as informações da carga.");
+                                    System.out.println("Digite o peso da carga");
+                                    peso = input.nextInt();
+                                    input.nextLine();
+                                    System.out.println("Digite a distância que a carga irá percorrer.");
+                                    distancia = input.nextInt();
+                                    input.nextLine();
+                                    System.out.println("Digite o tempo que a carga tem que chegar no destino.");
+                                    tempo_entrega = input.nextInt();
+                                    input.nextLine();
+                                    System.out.println("Digite o tipo da carga.");
+                                    tipo = input.nextLine();
+                                    System.out.println("Digite a Data que a carga será transportada.");
+                                    data_transporte = input.nextLine();
+                                }
+                            }
+                        }
+            }
+
+
+        } while (opcao != 5);
+
+
 
 
     }

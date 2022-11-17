@@ -1,8 +1,17 @@
 public class Carga {
-    private int cod_carga, peso, ditância, tempo_entrega;
+    private int cod_carga, peso, distancia, tempo_entrega;
     private String tipo, data_transporte;
-
     private boolean especial;
+
+    public Carga(int peso, int distancia, int tempo_entrega, String tipo, String data_transporte, boolean especial){
+        this.peso = peso;
+        this.distancia = distancia;
+        this.tempo_entrega = tempo_entrega;
+        this.tipo = tipo;
+        this.data_transporte = data_transporte;
+        this.especial = especial;
+        
+    }
 
     public int getCod_carga() {
         return cod_carga;
@@ -20,12 +29,12 @@ public class Carga {
         this.peso = peso;
     }
 
-    public int getDitância() {
-        return ditância;
+    public int getDistancia() {
+        return distancia;
     }
 
-    public void setDitância(int ditância) {
-        this.ditância = ditância;
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
     }
 
     public int getTempo_entrega() {

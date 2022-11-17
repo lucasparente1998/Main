@@ -1,9 +1,12 @@
 public class Cliente extends Pessoa {
+    private int cod_cliente;
+    private static int count = 0;
+
     public Cliente(String nome, String cpf, String telefone){
         super(nome, cpf, telefone);
+        this.cod_cliente = ++count; 
     }
-    private int cod_cliente;
-    private Localidade loc;
+    
 
     public int getCod_cliente() {
         return cod_cliente;
@@ -13,11 +16,5 @@ public class Cliente extends Pessoa {
         this.cod_cliente = cod_cliente;
     }
 
-    public Localidade getLoc() {
-        return loc;
-    }
-
-    public void setLoc(Localidade loc) {
-        this.loc = loc;
-    }
+   
 }
