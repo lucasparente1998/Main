@@ -1,10 +1,15 @@
 public class Motorista extends Pessoa {
-    public Motorista(String nome, String cpf, String telefone){
-        super(nome, cpf, telefone);
-    }
     private int cod_motorista;
     private String cnh;
-    private boolean possui_aet, status;
+    private boolean aet, status;
+
+    public Motorista(String nome, String cpf, String telefone, String cnh, boolean aet, boolean status){
+        super(nome, cpf, telefone);
+        this.cnh = cnh;
+        this.aet = aet;
+        this.status = status;
+    }
+    
 
     public int getCod_motorista() {
         return cod_motorista;
@@ -22,12 +27,12 @@ public class Motorista extends Pessoa {
         this.cnh = cnh;
     }
 
-    public boolean isPossui_aet() {
-        return possui_aet;
+    public boolean isAet() {
+        return aet;
     }
 
-    public void setPossui_aet(boolean possui_aet) {
-        this.possui_aet = possui_aet;
+    public void setAet(boolean aet) {
+        this.aet = aet;
     }
 
     public boolean isStatus() {
