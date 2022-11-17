@@ -1,5 +1,7 @@
+import java.io.File;
+import java.io.PrintStream;
 public class Caminhao {
-    private int cod_caminhao, potencia, ano, qtd_eixos, capacidade_carga;
+    private int cod_caminhao, potencia, ano, qtd_eixos, capacidade_carga, tanque;
     private String placa, cor, modelo, marca;
     private float km_por_litro;
 
@@ -13,7 +15,7 @@ public class Caminhao {
         ano = ano;
         qtd_eixos = qtd_eixos;
         km_por_litro = km_por_litro;
-        tanque = tanque
+        tanque = tanque;
         capacidade_carga = capacidade_carga;
     }
 }
