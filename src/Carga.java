@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Carga {
     private int cod_carga, peso, distancia, tempo_entrega;
     private String tipo, data_transporte;
@@ -67,5 +69,65 @@ public class Carga {
 
     public void setEspecial(boolean especial) {
         this.especial = especial;
+    }
+
+    public void alocaCaminhao(Carga aux_carga, ArrayList<Caminhao> caminhoes){
+        System.out.println("entrou");
+        double tabela_antt = 0.0;
+        ArrayList<Caminhao> caminhoes_aux = new ArrayList<Caminhao>();
+        ArrayList<Double> valor_frete_aux = new ArrayList<Double>();
+        ArrayList<Double> calc2_aux = new ArrayList<Double>();
+
+
+        if (aux_carga.getDistancia() < 500){
+            tabela_antt = 1.3;
+        } else if (aux_carga.getDistancia() >= 500 && aux_carga.getDistancia() < 1000) {
+            tabela_antt = 1.11;
+        } else if (aux_carga.getDistancia() >= 1000 && aux_carga.getDistancia() < 1500) {
+            tabela_antt = 0.97;
+        } else if (aux_carga.getDistancia() >= 1500 && aux_carga.getDistancia() < 2000) {
+            tabela_antt = 0.83;
+        } else if (aux_carga.getDistancia() >= 2000 && aux_carga.getDistancia() < 2500) {
+            tabela_antt = 0.72;
+        }else{
+            tabela_antt = 0.67;
+        }
+        
+        for (int i = 0; i < caminhoes.size(); i++){
+            if(caminhoes.get(i).getStatus() == true){
+                if(caminhoes.get(i).getCapacidade_carga() > aux_carga.getPeso()){
+                    double valor_frete = caminhoes.get(i).getQtd_eixos() * aux_carga.getDistancia() * tabela_antt;
+                    double calc2 = aux_carga.getPeso() / caminhoes.get(i).getPotencia();
+                    caminhoes_aux.add(caminhoes.get(i));
+                    valor_frete_aux.add(valor_frete);
+                    calc2_aux.add(calc2);  
+                }
+            }
+        }
+        double aux = valor_frete_aux.get(0) / calc2_aux.get(0);
+        int aux_cod = caminhoes_aux.get(0).getCod_caminhao();
+        System.out.println("Caminhões disponiveis para a carga:");
+        for (int k = 0; k < caminhoes_aux.size(); k++){
+            System.out.print(caminhoes_aux.get(k).getModelo() + "---");
+            System.out.print(valor_frete_aux.get(k) + "---");
+            System.out.println(calc2_aux.get(k) + ".");
+            if(aux > (valor_frete_aux.get(k) / calc2_aux.get(k))){
+                aux =  valor_frete_aux.get(k) / calc2_aux.get(k);
+                aux_cod = caminhoes_aux.get(k).getCod_caminhao();
+            }
+        }
+        for (int l = 0; l < caminhoes.size(); l++){
+            if (aux_cod == caminhoes.get(l).getCod_caminhao()){
+                caminhoes.get(l).setStatus(false);
+                System.out.print("O caminhão de modelo" + caminhoes.get(l).getModelo());
+                System.out.print(" com a placa:" + caminhoes.get(l).getPlaca());
+                System.out.print(" com potencia de " + caminhoes.get(l).getPotencia() + " cavalos ");
+                System.out.print(". Foi alocado a carga de tipo " + aux_carga.getTipo());
+                System.out.println(" com o peso de " + aux_carga.getPeso() + ".");
+            }
+        }
+
+        
+
     }
 }

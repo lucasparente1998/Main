@@ -95,7 +95,9 @@ public class Main {
                                     else{
                                         especial = false;
                                     }
-                                    Caminhao.alocaCaminhao(peso,distancia,especial,caminhoes);
+                                    Carga aux_carga = new Carga(peso, distancia, tempo_entrega, tipo, data_transporte, especial);
+                                    aux_carga.alocaCaminhao(aux_carga, caminhoes);
+                                    
                                 }
                                 break;
                             }
@@ -104,6 +106,8 @@ public class Main {
 
 
         } while (opcao != 5);
+
+        
 
 
 
