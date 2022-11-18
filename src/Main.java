@@ -38,8 +38,9 @@ public class Main {
 
         }
 
-        int opcao, cod_cliente, peso, distancia, tempo_entrega;
+        int opcao, cod_cliente, peso, distancia, tempo_entrega, yesno;
         String nome, cpf, telefone, tipo, data_transporte;
+        boolean especial;
         
         
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
@@ -47,6 +48,7 @@ public class Main {
         do {
             System.out.println("1 - Registrar Cliente.");
             System.out.println("2 - Realizar pedido.");
+            System.out.println("3 - ");
             opcao = input.nextInt();
             input.nextLine();
 
@@ -85,7 +87,17 @@ public class Main {
                                     tipo = input.nextLine();
                                     System.out.println("Digite a Data que a carga será transportada.");
                                     data_transporte = input.nextLine();
+                                    System.out.println("A carga é especial? 0 = falso/1 = verdadeiro");
+                                    yesno = input.nextInt();
+                                    if(yesno == 1){
+                                        especial = true;
+                                    }
+                                    else{
+                                        especial = false;
+                                    }
+                                    Caminhao.alocaCaminhao(peso,distancia,especial,caminhoes);
                                 }
+                                break;
                             }
                         }
             }
