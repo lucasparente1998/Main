@@ -113,25 +113,4 @@ public class Caminhao {
     public boolean getStatus() {
         return status;
     }
-    public static void alocaCaminhao(int peso, int distancia, boolean especial, ArrayList caminhoes){
-        double tabela_antt = 0.0;
-
-        if (distancia < 500){
-            tabela_antt = 1.3;
-        } else if (distancia >= 500 && distancia < 1000) {
-            tabela_antt = 1.11;
-        } else if (distancia >= 1000 && distancia < 1500) {
-            tabela_antt = 0.97;
-        } else if (distancia >= 1500 && distancia < 2000) {
-            tabela_antt = 0.83;
-        } else if (distancia >= 2000 && distancia < 2500) {
-            tabela_antt = 0.72;
-        }else{
-            tabela_antt = 0.67;
-        }
-        double calc = qtd_eixos * distancia * tabela_antt;
-        double calc2 = potencia * km_litro / tanque;
-
-
-    }
 }
