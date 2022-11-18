@@ -72,7 +72,6 @@ public class Carga {
     }
 
     public void alocaCaminhao(Carga aux_carga, ArrayList<Caminhao> caminhoes){
-        System.out.println("entrou");
         double tabela_antt = 0.0;
         ArrayList<Caminhao> caminhoes_aux = new ArrayList<Caminhao>();
         ArrayList<Double> valor_frete_aux = new ArrayList<Double>();
@@ -106,11 +105,7 @@ public class Carga {
         }
         double aux = valor_frete_aux.get(0) / calc2_aux.get(0);
         int aux_cod = caminhoes_aux.get(0).getCod_caminhao();
-        System.out.println("Caminhões disponiveis para a carga:");
         for (int k = 0; k < caminhoes_aux.size(); k++){
-            System.out.print(caminhoes_aux.get(k).getModelo() + "---");
-            System.out.print(valor_frete_aux.get(k) + "---");
-            System.out.println(calc2_aux.get(k) + ".");
             if(aux > (valor_frete_aux.get(k) / calc2_aux.get(k))){
                 aux =  valor_frete_aux.get(k) / calc2_aux.get(k);
                 aux_cod = caminhoes_aux.get(k).getCod_caminhao();
@@ -119,11 +114,11 @@ public class Carga {
         for (int l = 0; l < caminhoes.size(); l++){
             if (aux_cod == caminhoes.get(l).getCod_caminhao()){
                 caminhoes.get(l).setStatus(false);
-                System.out.print("O caminhão de modelo" + caminhoes.get(l).getModelo());
-                System.out.print(" com a placa:" + caminhoes.get(l).getPlaca());
+                System.out.print("\n\nO caminhão de modelo " + caminhoes.get(l).getModelo());
+                System.out.print(" com a placa " + caminhoes.get(l).getPlaca());
                 System.out.print(" com potencia de " + caminhoes.get(l).getPotencia() + " cavalos ");
                 System.out.print(". Foi alocado a carga de tipo " + aux_carga.getTipo());
-                System.out.println(" com o peso de " + aux_carga.getPeso() + ".");
+                System.out.println(" com o peso de " + aux_carga.getPeso() + ".\n");
             }
         }
 

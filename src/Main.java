@@ -29,7 +29,7 @@ public class Main {
             System.out.print("|---------------------------------|\n");
             System.out.print("| Opção 1 - Novo Cliente          |\n");
             System.out.print("| Opção 2 - Novo Pedido           |\n");
-            System.out.print("| Opção 3 - x                     |\n");
+            System.out.print("| Opção 3 - Caminhões disponiveis |\n");
             System.out.print("| Opção 0 - Sair                  |\n");
             System.out.print("|---------------------------------|\n");
             System.out.print("Digite uma opção: ");
@@ -49,33 +49,35 @@ public class Main {
                         clientes.add(aux);
                         System.out.println("Cliente registrado com sucesso!");
                         System.out.println("O id do cliente "+nome+" é: "+clientes.get(clientes.size()-1).getCod_cliente());
+                        System.out.println("\n");
                     break;
                 case 2:
                         System.out.println("");
                         if(clientes.isEmpty()){
-                            System.out.println("Não pode realizar um pedido sem ter um cliente.");
+                            System.out.println("Não pode realizar um pedido sem ter um cliente.\n");
                             break;
                         } else {
-                            System.out.println("Digite o Código do Cliente.");
+                            System.out.println("Digite o Código do Cliente:");
                             cod_cliente = input.nextInt();
                             input.nextLine();
+                            System.out.println("\n");
                             for (int i = 0; i < clientes.size(); i++){
                                 if(cod_cliente == clientes.get(i).getCod_cliente()){
                                     System.out.println("Digite as informações da carga.");
-                                    System.out.println("Digite o peso da carga");
+                                    System.out.println("Digite o peso da carga em quilos: ");
                                     peso = input.nextInt();
                                     input.nextLine();
-                                    System.out.println("Digite a distância que a carga irá percorrer.");
+                                    System.out.println("\nDigite a distância que a carga irá percorrer em quilômetros:");
                                     distancia = input.nextInt();
                                     input.nextLine();
-                                    System.out.println("Digite o tempo que a carga tem que chegar no destino.");
+                                    System.out.println("\nDigite o tempo que a carga tem que chegar no destino em minutos:");
                                     tempo_entrega = input.nextInt();
                                     input.nextLine();
-                                    System.out.println("Digite o tipo da carga.");
+                                    System.out.println("\nDigite o tipo da carga (Verduras, carga viva, eletrodomesticos):");
                                     tipo = input.nextLine();
-                                    System.out.println("Digite a Data que a carga será transportada.");
+                                    System.out.println("\nDigite a Data que a carga será transportada (XX/XX/XX):");
                                     data_transporte = input.nextLine();
-                                    System.out.println("A carga é especial? 0 = falso/1 = verdadeiro");
+                                    System.out.println("\nA carga é especial? 0 = falso/1 = verdadeiro");
                                     yesno = input.nextInt();
                                     if(yesno == 1){
                                         especial = true;
@@ -87,13 +89,26 @@ public class Main {
                                     aux_carga.alocaCaminhao(aux_carga, caminhoes);
 
                                 }
-                                break;
+                                
                             }
                         }
+                        break;
+                case 3:
+                        System.out.println("\n\nLista de caminhões disponiveis:\n");
+                        for(int j = 0; j < caminhoes.size(); j++){
+                            if(caminhoes.get(j).getStatus() == true){
+                                System.out.print(caminhoes.get(j).getCod_caminhao() + " - ");
+                                System.out.print(caminhoes.get(j).getMarca() + " ");
+                                System.out.print(caminhoes.get(j).getModelo() + " ");
+                                System.out.println("com a placa " + caminhoes.get(j).getPlaca());    
+                            }
+                        }
+                        System.out.println("\n\n");
+                        break;
             }
 
 
-        } while (opcao != 5);
+        } while (opcao != 0);
 
 
 
