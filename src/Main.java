@@ -22,7 +22,7 @@ public class Main {
         caminhoes = ManipulaArquivo.leituraCaminhao("caminhoes.txt");
         motoristas = ManipulaArquivo.leituraMotorista("motoristas.txt");
         System.out.println("Arquivos carregados.");
-      
+
         do {
             Scanner input = new Scanner(System.in);
             System.out.print("##--            MENU           --##\n\n");
@@ -83,10 +83,20 @@ public class Main {
                                     else{
                                         especial = false;
                                     }
+                                    Carga aux_carga = new Carga(peso, distancia, tempo_entrega, tipo, data_transporte, especial);
+                                    aux_carga.alocaCaminhao(aux_carga, caminhoes);
+
                                 }
+                                break;
                             }
                         }
             }
-        } while (opcao != 0);
+
+
+        } while (opcao != 5);
+
+
+
+
     }
 }
