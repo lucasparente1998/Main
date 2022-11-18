@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Caminhao {
     private int cod_caminhao, potencia, ano, qtd_eixos, capacidade_carga, tanque;
     private String placa, cor, modelo, marca;

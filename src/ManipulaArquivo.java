@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class ManipulaArquivo {
 
     public static ArrayList<Caminhao> leituraCaminhao(String path) throws IOException {
-        File arq1 = new File(path);
         Scanner input = new Scanner(System.in);
         ArrayList<Caminhao> caminhoes = new ArrayList<Caminhao>();
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
@@ -20,7 +19,6 @@ public class ManipulaArquivo {
         return caminhoes;
     }
     public static ArrayList<Motorista> leituraMotorista(String path) throws IOException {
-        File arq2 = new File(path);
         Scanner input = new Scanner(System.in);
         ArrayList<Motorista> motoristas = new ArrayList<Motorista>();
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
