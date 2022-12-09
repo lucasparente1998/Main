@@ -111,4 +111,11 @@ public class Caminhao {
     public boolean getStatus() {
         return status;
     }
+    public void imprimeCaminhao(Caminhao caminhao, Carga aux_carga){
+        System.out.print("\n\nO caminhão de modelo " + caminhao.getModelo());
+        System.out.print(" com a placa " + caminhao.getPlaca());
+        System.out.print(" com potencia de " + caminhao.getPotencia() + " cavalos ");
+        System.out.print(". Foi alocado a carga de tipo " + aux_carga.getTipo());
+        System.out.println(" com o peso de " + aux_carga.getPeso() + ".\n");
+    }
 }

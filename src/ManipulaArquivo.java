@@ -25,7 +25,7 @@ public class ManipulaArquivo {
         String line;
         while ((line = buffRead.readLine()) != null) {
             String[] lista = line.split("\\s+");
-            Motorista motorista = new Motorista(lista[0], lista[1], lista[2], lista[3], Boolean.parseBoolean(lista[4]), Boolean.parseBoolean(lista[5]));
+            Motorista motorista = new Motorista(Integer.parseInt(lista[0]) ,lista[1], lista[2], lista[3], lista[4], Boolean.parseBoolean(lista[5]), Boolean.parseBoolean(lista[6]));
             motoristas.add(motorista);
         }
         buffRead.close();

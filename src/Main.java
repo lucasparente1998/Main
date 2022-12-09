@@ -14,6 +14,7 @@ public class Main {
         ArrayList<Caminhao> caminhoes = new ArrayList<Caminhao>();
         ArrayList<Motorista> motoristas = new ArrayList<Motorista>();
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
         System.out.println("");
         caminhoes = ManipulaArquivo.leituraCaminhao("caminhoes.txt");
@@ -27,6 +28,8 @@ public class Main {
             System.out.print("| Opção 1 - Novo Cliente          |\n");
             System.out.print("| Opção 2 - Novo Pedido           |\n");
             System.out.print("| Opção 3 - Caminhões disponiveis |\n");
+            System.out.print("| Opção 4 - Motoristas disponiveis|\n");
+            System.out.print("| Opção 4 - Pedidos em andamento  |\n");
             System.out.print("| Opção 0 - Sair                  |\n");
             System.out.print("|---------------------------------|\n");
             System.out.print("Digite uma opção: ");
@@ -83,8 +86,21 @@ public class Main {
                                         especial = false;
                                     }
                                     Carga aux_carga = new Carga(peso, distancia, tempo_entrega, tipo, data_transporte, especial);
-                                    aux_carga.alocaCaminhao(aux_carga, caminhoes);
-
+                                    //double valor_frete;
+                                    String aceito;
+                                    //aux_carga.alocaMotorista(aux_carga, motoristas);
+                                    //valor_frete = aux_carga.alocaCaminhao(aux_carga, caminhoes);
+                                    Pedido aux_pedido = new Pedido(false, aux_carga);
+                                    aux_pedido.pedido(aux_pedido, motoristas, caminhoes);
+                                    System.out.println("\n\nCom as informações acima deseja continuar com o pedido? Sim/Nao");
+                                    aceito = input.nextLine();
+                                    input.nextLine();
+                                    if (aceito == "Sim" || aceito == "sim" || aceito == "s" || aceito == "S"){
+                                        aux_pedido.setStatus(true);
+                                        pedidos.add(aux_pedido);
+                                    } else {
+                                        aux_pedido.recusarPedido(aux_pedido, motoristas, caminhoes);
+                                    }
                                 }
                                 
                             }
@@ -97,11 +113,31 @@ public class Main {
                                 System.out.print(caminhoes.get(j).getCod_caminhao() + " - ");
                                 System.out.print(caminhoes.get(j).getMarca() + " ");
                                 System.out.print(caminhoes.get(j).getModelo() + " ");
-                                System.out.println("com a placa " + caminhoes.get(j).getPlaca());    
+                                System.out.println("com a placa " + caminhoes.get(j).getPlaca() + " . ");    
                             }
                         }
                         System.out.println("\n\n");
                         break;
+                case 4:
+                        System.out.println("\n\nLista de motoristas disponiveis:\n");
+                        for(int k = 0; k < motoristas.size(); k++){
+                            if(motoristas.get(k).getStatus() == true){
+                                System.out.print(motoristas.get(k).getCod_motorista() + " - ");
+                                System.out.print(motoristas.get(k).getNome() + " - ");
+                                System.out.print(motoristas.get(k).getCpf() + " - ");
+                                System.out.println(motoristas.get(k).getAet() + " . ");
+                            }
+                        }
+                case 5: 
+                        System.out.println("\n\nVisualizar pedidos:\n");
+                        for(int b = 0; b < pedidos.size(); b++){
+                            if (pedidos.size() == 0){
+                                System.out.println("Não possui pedidos em andamento.");
+                            } else {
+
+                            }
+                        }
+
             }
 
 

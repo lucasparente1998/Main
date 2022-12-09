@@ -63,7 +63,7 @@ public class Carga {
         this.data_transporte = data_transporte;
     }
 
-    public boolean isEspecial() {
+    public boolean getEspecial() {
         return especial;
     }
 
@@ -71,7 +71,26 @@ public class Carga {
         this.especial = especial;
     }
 
-    public void alocaCaminhao(Carga aux_carga, ArrayList<Caminhao> caminhoes){
+    public Motorista alocaMotorista(Carga aux_carga, ArrayList<Motorista> motoristas){
+        Motorista aux_motorista = null;
+        for (int i = 0; i < motoristas.size(); i++){
+            if (motoristas.get(i).getStatus() == true){
+                if(aux_carga.getEspecial() == true){
+                    if(motoristas.get(i).getAet() == true){
+                        motoristas.get(i).setStatus(false);
+                        motoristas.get(i).imprimeMotorista(motoristas.get(i));
+                    }
+                } else{
+                    motoristas.get(i).setStatus(false);
+                    motoristas.get(i).imprimeMotorista(motoristas.get(i));
+                }
+                aux_motorista = motoristas.get(i);
+            }
+        }
+        return aux_motorista;   
+    }
+
+    public Caminhao alocaCaminhao(Carga aux_carga, ArrayList<Caminhao> caminhoes){
         double tabela_antt = 0.0;
         ArrayList<Caminhao> caminhoes_aux = new ArrayList<Caminhao>();
         ArrayList<Double> valor_frete_aux = new ArrayList<Double>();
@@ -111,18 +130,17 @@ public class Carga {
                 aux_cod = caminhoes_aux.get(k).getCod_caminhao();
             }
         }
+        double aux_valor_frete = 0;
+        Caminhao aux_caminhao = null;
         for (int l = 0; l < caminhoes.size(); l++){
             if (aux_cod == caminhoes.get(l).getCod_caminhao()){
                 caminhoes.get(l).setStatus(false);
-                System.out.print("\n\nO caminhão de modelo " + caminhoes.get(l).getModelo());
-                System.out.print(" com a placa " + caminhoes.get(l).getPlaca());
-                System.out.print(" com potencia de " + caminhoes.get(l).getPotencia() + " cavalos ");
-                System.out.print(". Foi alocado a carga de tipo " + aux_carga.getTipo());
-                System.out.println(" com o peso de " + aux_carga.getPeso() + ".\n");
+                caminhoes.get(l).imprimeCaminhao(caminhoes.get(l), aux_carga);
+                aux_caminhao = caminhoes.get(l);
+                aux_valor_frete = valor_frete_aux.get(l);
+                System.out.println("O valor do frete é :" + aux_valor_frete);
             }
         }
-
-        
-
+        return aux_caminhao;
     }
 }
