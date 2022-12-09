@@ -17,8 +17,8 @@ public class Main {
         ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
         System.out.println("");
-        caminhoes = ManipulaArquivo.leituraCaminhao("src/caminhoes.txt");
-        motoristas = ManipulaArquivo.leituraMotorista("src/motoristas.txt");
+        caminhoes = ManipulaArquivo.leituraCaminhao("caminhoes.txt");
+        motoristas = ManipulaArquivo.leituraMotorista("motoristas.txt");
         System.out.println("Arquivos carregados.");
 
         do {
@@ -101,6 +101,7 @@ public class Main {
                                         System.out.println("\nPedido registrado com sucesso!!!!");
                                     } else {
                                         aux_pedido.recusarPedido(aux_pedido, motoristas, caminhoes);
+                                        System.out.println("\nPedido não realizado!!!!");
                                     }
                                 }
                                 
@@ -132,12 +133,14 @@ public class Main {
                         break;
                 case 5: 
                         System.out.println("\n\nVisualizar pedidos:\n");
-                        for(int b = 0; b < pedidos.size(); b++){
-                            if (pedidos.size() == 0){
-                                System.out.println("Não possui pedidos em andamento.");
-                            } else {
+
+                        if (pedidos.size() == 0){
+                            System.out.println("Não possui pedidos em andamento.\n\n");
+                        } else {
+                            for(int b = 0; b < pedidos.size(); b++){
                                 System.out.println("\n\n");
                                 pedidos.get(b).visualizaPedido(pedidos.get(b));
+                                System.out.println("\n\n"); 
                             }
                         }
                         break;
