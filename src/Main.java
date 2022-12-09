@@ -29,7 +29,7 @@ public class Main {
             System.out.print("| Opção 2 - Novo Pedido           |\n");
             System.out.print("| Opção 3 - Caminhões disponiveis |\n");
             System.out.print("| Opção 4 - Motoristas disponiveis|\n");
-            System.out.print("| Opção 4 - Pedidos em andamento  |\n");
+            System.out.print("| Opção 5 - Pedidos em andamento  |\n");
             System.out.print("| Opção 0 - Sair                  |\n");
             System.out.print("|---------------------------------|\n");
             System.out.print("Digite uma opção: ");
@@ -87,17 +87,18 @@ public class Main {
                                     }
                                     Carga aux_carga = new Carga(peso, distancia, tempo_entrega, tipo, data_transporte, especial);
                                     //double valor_frete;
-                                    String aceito;
+                                    Integer aceito;
                                     //aux_carga.alocaMotorista(aux_carga, motoristas);
                                     //valor_frete = aux_carga.alocaCaminhao(aux_carga, caminhoes);
+                                    System.out.println("\n\nAs informações do pedido são: \n");
                                     Pedido aux_pedido = new Pedido(false, aux_carga);
                                     aux_pedido.pedido(aux_pedido, motoristas, caminhoes);
-                                    System.out.println("\n\nCom as informações acima deseja continuar com o pedido? Sim/Nao");
-                                    aceito = input.nextLine();
-                                    input.nextLine();
-                                    if (aceito == "Sim" || aceito == "sim" || aceito == "s" || aceito == "S"){
+                                    System.out.println("\n\nCom as informações acima deseja continuar com o pedido? 1 = Sim/ 0 = Nao");
+                                    aceito = input.nextInt();
+                                    if (aceito ==  1){
                                         aux_pedido.setStatus(true);
                                         pedidos.add(aux_pedido);
+                                        System.out.println("\nPedido registrado com sucesso!!!!");
                                     } else {
                                         aux_pedido.recusarPedido(aux_pedido, motoristas, caminhoes);
                                     }
@@ -128,15 +129,18 @@ public class Main {
                                 System.out.println(motoristas.get(k).getAet() + " . ");
                             }
                         }
+                        break;
                 case 5: 
                         System.out.println("\n\nVisualizar pedidos:\n");
                         for(int b = 0; b < pedidos.size(); b++){
                             if (pedidos.size() == 0){
                                 System.out.println("Não possui pedidos em andamento.");
                             } else {
-
+                                System.out.println("\n\n");
+                                pedidos.get(b).visualizaPedido(pedidos.get(b));
                             }
                         }
+                        break;
 
             }
 

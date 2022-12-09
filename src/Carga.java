@@ -73,19 +73,23 @@ public class Carga {
 
     public Motorista alocaMotorista(Carga aux_carga, ArrayList<Motorista> motoristas){
         Motorista aux_motorista = null;
+        ArrayList<Motorista> lista_motorista = new ArrayList<Motorista>();
         for (int i = 0; i < motoristas.size(); i++){
             if (motoristas.get(i).getStatus() == true){
                 if(aux_carga.getEspecial() == true){
                     if(motoristas.get(i).getAet() == true){
-                        motoristas.get(i).setStatus(false);
-                        motoristas.get(i).imprimeMotorista(motoristas.get(i));
+                        lista_motorista.add(motoristas.get(i));
                     }
                 } else{
-                    motoristas.get(i).setStatus(false);
-                    motoristas.get(i).imprimeMotorista(motoristas.get(i));
+                    lista_motorista.add(motoristas.get(i));
                 }
-                aux_motorista = motoristas.get(i);
+                
             }
+        }
+        if (lista_motorista.size() > 0){
+            aux_motorista = lista_motorista.get(0);
+            aux_motorista.imprimeMotorista(aux_motorista);
+            aux_motorista.setStatus(false);
         }
         return aux_motorista;   
     }
@@ -138,7 +142,7 @@ public class Carga {
                 caminhoes.get(l).imprimeCaminhao(caminhoes.get(l), aux_carga);
                 aux_caminhao = caminhoes.get(l);
                 aux_valor_frete = valor_frete_aux.get(l);
-                System.out.println("O valor do frete é :" + aux_valor_frete);
+                System.out.println("O valor do frete é : R$" + aux_valor_frete);
             }
         }
         return aux_caminhao;

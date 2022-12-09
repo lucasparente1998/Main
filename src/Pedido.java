@@ -13,7 +13,7 @@ public class Pedido {
     public Pedido(boolean status, Carga carga){
         this.data_pedido = new Date();
         this.status = status;
-        this.cod_pedido = count++;
+        this.cod_pedido = ++count;
         this.carga = carga;
         this.caminhao = null;
         this.motorista = null;
@@ -87,5 +87,11 @@ public class Pedido {
                 motoristas.get(m).setStatus(true);
             }
         }
+    }
+
+    public void visualizaPedido(Pedido aux_pedido){
+        System.out.println("O codigo do pedido é: " + aux_pedido.getCod_pedido());
+        System.out.println("O codigo do motorista é : " + aux_pedido.getMotorista().getCod_motorista());
+        System.out.println("O codigo do caminhao é: " + aux_pedido.getCaminhao().getCod_caminhao());
     }
 }
