@@ -17,8 +17,8 @@ public class Main {
         ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
         System.out.println("");
-        caminhoes = ManipulaArquivo.leituraCaminhao("caminhoes.txt");
-        motoristas = ManipulaArquivo.leituraMotorista("motoristas.txt");
+        caminhoes = ManipulaArquivo.leituraCaminhao("src/caminhoes.txt");
+        motoristas = ManipulaArquivo.leituraMotorista("src/motoristas.txt");
         System.out.println("Arquivos carregados.");
 
         do {
